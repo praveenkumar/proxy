@@ -12,17 +12,17 @@ default: install
 install: $(SOURCES)
 	go build -o $(BINARY_NAME)
 
-$(BUILD_DIR)/macos-amd64/$(BINARY_NAME):
-	GOARCH=amd64 GOOS=darwin go build -o $(BUILD_DIR)/macos-amd64/$(BINARY_NAME)
+$(BUILD_DIR)/macos-amd64-$(BINARY_NAME):
+	GOARCH=amd64 GOOS=darwin go build -o $@
 
-$(BUILD_DIR)/linux-amd64/$(BINARY_NAME):
-	GOOS=linux GOARCH=amd64 go build -o $(BUILD_DIR)/linux-amd64/$(BINARY_NAME)
+$(BUILD_DIR)/linux-amd64-$(BINARY_NAME):
+	GOOS=linux GOARCH=amd64 go build -o $@
 
-$(BUILD_DIR)/windows-amd64/$(BINARY_NAME).exe:
-	GOARCH=amd64 GOOS=windows go build -o $(BUILD_DIR)/windows-amd64/$(BINARY_NAME).exe
+$(BUILD_DIR)/windows-amd64-$(BINARY_NAME).exe:
+	GOARCH=amd64 GOOS=windows go build -o $@
 
 .PHONY: cross ## Cross compiles all binaries
-cross: $(BUILD_DIR)/macos-amd64/$(BINARY_NAME) $(BUILD_DIR)/linux-amd64/$(BINARY_NAME) $(BUILD_DIR)/windows-amd64/$(BINARY_NAME).exe
+cross: $(BUILD_DIR)/macos-amd64-$(BINARY_NAME) $(BUILD_DIR)/linux-amd64-$(BINARY_NAME) $(BUILD_DIR)/windows-amd64-$(BINARY_NAME).exe
 
 .PHONY: clean
 clean:
