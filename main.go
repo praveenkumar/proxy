@@ -57,7 +57,8 @@ func main() {
 		// Get the system certificate pools
 		caCertPool, err := x509.SystemCertPool()
 		if err != nil {
-			log.Fatalf("Not able to get system certificate pool %v", err)
+			log.Printf("Not able to get system certificate pool %v", err)
+			caCertPool = x509.NewCertPool()
 		}
 		caCert, err := ioutil.ReadFile(caCertPath)
 		if err != nil {
